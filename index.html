@@ -1,100 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>ASTRO Hub Key Generator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASTRO KEY</title>
   <style>
-    /* reset + full-screen */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; overflow: hidden; }
-    body {
-      /* full-page background image */
-      background: url('https://i.ibb.co/4PVQFf0/Black-White-Modern-Outer-Space.png') 
-                  no-repeat center center fixed;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: url('https://i.ibb.co/4PVQFf0/Black-White-Modern-Outer-Space.png') no-repeat center center fixed;
       background-size: cover;
+      font-family: monospace;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-family: 'Segoe UI', sans-serif;
-    }
+      align-items: center;
+    }.container {
+  position: relative;
+  width: 350px;
+  height: 200px;
+}
 
-    /* wrapper to center content */
-    .wrapper { text-align: center; }
+.key-box {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  letter-spacing: 2px;
+  border-radius: 4px;
+}
 
-    /* black key box */
-    #keyBox {
-      background: #000;
-      color: #fff;
-      border: 2px solid #fff;
-      border-radius: 8px;
-      padding: 20px 30px;
-      min-width: 300px;
-      font-size: 24px;
-      cursor: pointer;
-      user-select: all;
-      margin-bottom: 20px;
-    }
+.copy-btn {
+  position: absolute;
+  top: 140px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
 
-    /* copy button */
-    #copyBtn {
-      background: #fff;
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      padding: 12px 24px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform .1s;
-    }
-    #copyBtn:active {
-      transform: scale(0.96);
-    }
+.copy-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://i.ibb.co/4PVQFf0/Black-White-Modern-Outer-Space.png') no-repeat;
+  background-position: center bottom;
+  background-size: 350px auto;
+  pointer-events: none;
+}
+
   </style>
 </head>
 <body>
-
-  <div class="wrapper">
-    <!-- click this to regenerate -->
-    <div id="keyBox" title="Click to regenerate">ASTRO-xxxxxxxxxxxxx</div>
-    <!-- copies current key -->
-    <button id="copyBtn">COPY KEY</button>
-  </div>
-
-  <script>
-    // generate a random alphanumeric string of given length
-    function generateKey(length = 13) {
+  <div class="container">
+    <div class="key-box" id="keyBox"></div>
+    <button class="copy-btn" onclick="copyKey()"></button>
+  </div>  <script>
+    function generateKey() {
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      let str = '';
-      for (let i = 0; i < length; i++) {
-        str += chars.charAt(Math.floor(Math.random() * chars.length));
+      let key = 'ASTRO-';
+      for (let i = 0; i < 16; i++) {
+        key += chars.charAt(Math.floor(Math.random() * chars.length));
       }
-      return 'ASTRO-' + str;
+      return key;
     }
 
-    const keyBox = document.getElementById('keyBox');
-    const copyBtn = document.getElementById('copyBtn');
+    function copyKey() {
+      const key = document.getElementById('keyBox').innerText;
+      navigator.clipboard.writeText(key).then(() => {
+        alert('Key copied to clipboard!');
+      });
+    }
 
-    // initial key on load
-    keyBox.textContent = generateKey();
-
-    // regenerate on box click
-    keyBox.addEventListener('click', () => {
-      keyBox.textContent = generateKey();
-    });
-
-    // copy to clipboard, flash button text
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(keyBox.textContent)
-        .then(() => {
-          copyBtn.textContent = 'COPIED!';
-          setTimeout(() => copyBtn.textContent = 'COPY KEY', 1000);
-        })
-        .catch(() => {
-          alert('Copy failed. Please try again.');
-        });
-    });
-  </script>
-
-</body>
+    document.getElementById('keyBox').innerText = generateKey();
+  </script></body>
 </html>
