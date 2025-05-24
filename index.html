@@ -1,16 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ASTRO HUB | KEY SYSTEM</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>ASTRO Hub Key Generator</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0e0e0e url('https://i.ibb.co/4PVQFf0/Black-White-Modern-Outer-Space.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .key-box {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 2px solid white;
+      padding: 20px 40px;
+      border-radius: 10px;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+      width: 90%;
+      max-width: 500px;
+      word-wrap: break-word;
+    }
+
+    .copy-button {
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .copy-button:hover {
+      background-color: #cccccc;
+    }
+  </style>
 </head>
 <body>
-  <div class="title">ASTRO HUB | KEY SYSTEM</div>
-  <div id="keyBox" class="key-box"></div>
-  <button class="copy-btn" onclick="copyKey()">Copy Key</button>
 
-  <script src="script.js"></script>
+  <div class="key-box" id="keyBox">ASTRO-0000-placeholder</div>
+  <button class="copy-button" onclick="copyKey()">COPY KEY</button>
+
+  <script>
+    const words = ['voidhunter', 'shadowpulse', 'byteflux', 'darknova', 'nexuscore', 'nullbyte'];
+
+    function generateKey() {
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+      const randomWord = words[Math.floor(Math.random() * words.length)];
+      return `ASTRO-${randomNum}-${randomWord}`;
+    }
+
+    function copyKey() {
+      const keyText = document.getElementById('keyBox').innerText;
+      navigator.clipboard.writeText(keyText).then(() => {
+        alert('Key copied: ' + keyText);
+      });
+    }
+
+    // Generate a key on page load
+    document.getElementById('keyBox').innerText = generateKey();
+  </script>
+
 </body>
 </html>
