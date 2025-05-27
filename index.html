@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astro Hub | Key System</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="input-container">
+    <input id="keyInput" type="text" readonly class="input-box" />
+    <button id="copyBtn" class="copy-button" aria-label="Copy Key"></button>
+  </div>
+
+  <script>
+    function generateSecureKey(length = 32) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return `Astro.${result}`;
+    }
+
+    const keyInput = document.getElementById("keyInput");
+    const copyBtn = document.getElementById("copyBtn");
+
+    keyInput.value = generateSecureKey();
+
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(keyInput.value).then(() => {
+        copyBtn.style.opacity = 0.6;
+        setTimeout(() => {
+          copyBtn.style.opacity = 1;
+        }, 500);
+      });
+    });
+  </script>
+</body>
+</html>
