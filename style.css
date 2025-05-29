@@ -14,7 +14,7 @@ html, body {
 
 /* Background */
 body {
-  background-image: url('https://i.postimg.cc/YCdLmm2N/Black-White-Modern-Outer-Space-Presentation-20250527-213745-0000.png');
+  background-image: url('https://i.imgur.com/Yok5y7d.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -43,7 +43,7 @@ body {
   font-weight: bold;
   text-align: center;
   color: white;
-  background: url('https://i.postimg.cc/zGy80LSF/Background-Eraser-20250527-214102647.png') no-repeat center center;
+  background: url('https://i.imgur.com/Rq0S7r9.png') no-repeat center center;
   background-size: cover;
   border: none;
   border-radius: 12px;
@@ -52,7 +52,7 @@ body {
 
 /* Copy Button */
 .copy-button {
-  background: url('https://i.postimg.cc/L6RJCVnB/Background-Eraser-20250527-214004936.png') no-repeat center center;
+  background: url('https://i.imgur.com/HE3UgTz.png') no-repeat center center;
   background-size: cover;
   width: 280px;
   height: 90px;
