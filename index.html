@@ -7,20 +7,16 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-  /* RESET & BASE */
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Orbitron', sans-serif;
-    background: url('https://images.unsplash.com/photo-1545249394-3ea5b42d1ccf?auto=format&fit=crop&w=1950&q=80') 
-                no-repeat center center fixed;
+    background: url('https://images.unsplash.com/photo-1545249394-3ea5b42d1ccf?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
     background-size: cover;
     color: #eee;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
-  
-  /* HEADER */
   header {
     background: rgba(0, 0, 20, 0.8);
     color: #0ff;
@@ -28,9 +24,8 @@
     text-align: center;
     box-shadow: 0 4px 8px rgba(0,255,255,0.2);
   }
-  header h1 { font-size: 1.8rem; }
+  header h1 { font-size: 1.8rem; letter-spacing: 1px; }
 
-  /* NAVIGATION */
   nav {
     display: flex;
     background: rgba(10,10,40,0.9);
@@ -50,8 +45,7 @@
   nav button.active {
     background: rgba(0,255,255,0.2);
   }
-  
-  /* MAIN CONTENT & TABS */
+
   main {
     flex: 1;
     padding: 1rem;
@@ -74,8 +68,27 @@
     color: #0ff;
     margin-bottom: 0.75rem;
   }
+  pre {
+    background: rgba(255,255,255,0.1);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    max-height: 300px;
+  }
+  button.primary {
+    background: #0ff;
+    color: #000;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button.primary:hover {
+    background: #0cc;
+  }
 
-  /* FOOTER */
   footer {
     text-align: center;
     padding: 0.5rem;
@@ -83,14 +96,11 @@
     color: #aaa;
   }
 
-  /* RESPONSIVE */
   @media (max-width: 600px) {
     header h1 { font-size: 1.4rem; }
     nav button { font-size: 0.9rem; padding: 0.75rem; }
     .content-box { padding: 1rem; }
   }
-
-  /* TAB ANIMATION */
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -106,40 +116,68 @@
   <nav>
     <button onclick="showTab('dashboard')" class="active">Dashboard</button>
     <button onclick="showTab('script')">Script</button>
-    <button onclick="showTab('level')">Level</button>
     <button onclick="showTab('credit')">Credit</button>
     <button onclick="showTab('settings')">Settings</button>
   </nav>
 
   <main>
+    <!-- Dashboard Tab -->
     <section id="dashboard" class="active">
       <div class="content-box">
         <h2>Mission Control</h2>
-        <p>Overview of your cosmic realm – players online, mission status, and galaxy logs.</p>
+        <p>
+          Who is the maker? This web dashboard was created by Alex— a talented young developer from Indonesia who built Astro Hub for those who struggle to find reliable Roblox scripts.
+          Astro Hub was designed to simplify your scripting journey and elevate your gaming experience.
+        </p>
+        <p>
+          Thank you for using Astro Hub exploit. We're continuously improving the UI/UX and adding more tools, so your feedback is always welcome! 🚀
+        </p>
+      </div>
+
+      <div class="content-box">
+        <h2>Login to Access</h2>
+        <button class="primary" onclick="alert('Redirect to Discord OAuth (placeholder)')">
+          🔐 Login with Discord
+        </button>
+        <p style="text-align:center; margin: 1rem 0;">— or —</p>
+        <button class="primary" onclick="alert('Email login placeholder')">
+          📧 Login with Email
+        </button>
       </div>
     </section>
+
+    <!-- Script Tab -->
     <section id="script">
       <div class="content-box">
         <h2>Script Station</h2>
-        <p>Upload, edit, or deploy Lua scripts for your Roblox universe.</p>
+        <p>Paste your Roblox Lua script below so others can copy it:</p>
+        <pre>
+// example Roblox Lua script
+local player = game.Players.LocalPlayer
+print("Hello from Astro Hub, " .. player.Name)
+-- paste your script here...
+        </pre>
       </div>
     </section>
-    <section id="level">
-      <div class="content-box">
-        <h2>Level Lab</h2>
-        <p>Track player XP, ranks, and unlockable achievements.</p>
-      </div>
-    </section>
+
+    <!-- Credit Tab -->
     <section id="credit">
       <div class="content-box">
         <h2>Credit Core</h2>
-        <p>View and adjust in-game credits, currency, and economy settings.</p>
+        <p>
+          <strong>Created by:</strong> Alex — Developer, UI/UX Designer, Web Architect and passionate about making tools for the Roblox community.
+        </p>
+        <p>
+          Astro Hub is designed with care to support creators and scripters. We focus on clean design, ease-of-use, and community-driven improvements.
+        </p>
       </div>
     </section>
+
+    <!-- Settings Tab -->
     <section id="settings">
       <div class="content-box">
         <h2>Command Settings</h2>
-        <p>Configure global settings, notifications, appearance, and hub options.</p>
+        <p>Configure global settings, notifications, appearance, and hub options here (coming soon).</p>
       </div>
     </section>
   </main>
