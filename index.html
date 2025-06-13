@@ -1,196 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Astro Hub - Space Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: radial-gradient(ellipse at bottom, #0d0d2b 0%, #000 100%);
-      color: #eee;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .sidebar {
-      width: 240px;
-      background: rgba(0,0,20,0.95);
-      display: flex;
-      flex-direction: column;
-      padding: 2rem 1rem;
-      border-right: 2px solid #0ff;
-    }
-    .sidebar h1 {
-      font-family: 'Orbitron', sans-serif;
-      color: #0ff;
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    .nav-btn {
-      background: none;
-      border: none;
-      color: #0ff;
-      text-align: left;
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .nav-btn:hover, .nav-btn.active {
-      background: rgba(0,255,255,0.2);
-      border-radius: 6px;
-    }
-
-    .main {
-      flex: 1;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-    .section.active {
-      display: block;
-    }
-
-    .content-box {
-      background: rgba(255,255,255,0.05);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0,255,255,0.2);
-    }
-
-    h2 {
-      font-family: 'Orbitron', sans-serif;
-      color: #0ff;
-      margin-bottom: 1rem;
-    }
-
-    pre {
-      background: rgba(0, 0, 0, 0.3);
-      padding: 1rem;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
-
-    .primary {
-      background: #0ff;
-      color: #000;
-      padding: 0.75rem 1.25rem;
-      border: none;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      margin: 0.25rem;
-    }
-    .primary:hover {
-      background: #0cc;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #888;
-      margin-top: 1rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        display: none;
-      }
-      body {
-        flex-direction: column;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Cheat Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #ff4757;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff4757;
+            text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ff4757;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #ff4757;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.2);
+        }
+        
+        .card h3 {
+            color: #ff4757;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .card p {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #ff6b81;
+        }
+        
+        .script-box {
+            background: rgba(10, 10, 10, 0.9);
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #333;
+        }
+        
+        .script-box pre {
+            color: #7bed9f;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .copy-btn {
+            background: #2ed573;
+            margin-top: 10px;
+        }
+        
+        .copy-btn:hover {
+            background: #20bf6b;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #333;
+            margin-top: 30px;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <div class="logo">ROBLOX CHEAT v3.2</div>
+            <div class="user-info">
+                <span>Premium User</span>
+                <div class="avatar">AD</div>
+            </div>
+        </header>
+        
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Aimbot</h3>
+                <p>Auto-lock pada musuh dengan presisi tinggi. Dapat disesuaikan untuk berbagai senjata.</p>
+                <div class="script-box">
+                    <pre>-- Aimbot Script
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local camera = workspace.CurrentCamera
 
-  <div class="sidebar">
-    <h1>🚀 Astro Hub</h1>
-    <button class="nav-btn active" onclick="showTab('dashboard')">🌌 Dashboard</button>
-    <button class="nav-btn" onclick="showTab('script')">📜 Script</button>
-    <button class="nav-btn" onclick="showTab('credit')">👨‍🚀 Credit</button>
-    <button class="nav-btn" onclick="showTab('settings')">⚙️ Settings</button>
-  </div>
+-- Config
+local smoothness = 5
+local fov = 100
 
-  <div class="main">
-    <!-- Dashboard -->
-    <div id="dashboard" class="section active">
-      <div class="content-box">
-        <h2>🌠 Mission Control</h2>
-        <p>
-          Welcome to <strong>Astro Hub</strong>—your universal dashboard for Roblox scripting! Built by <strong>Alex</strong>, a passionate developer from Indonesia, this tool is made for explorers who seek easy access to powerful scripts.
-        </p>
-        <p>
-          Keep exploring, keep improving. Feedback is always welcome. Let's go beyond the stars! 🌌
-        </p>
-      </div>
-      <div class="content-box">
-        <h2>🛸 Login to Launch</h2>
-        <button class="primary" onclick="alert('Login via Discord (placeholder)')">🔐 Login with Discord</button>
-        <button class="primary" onclick="alert('Login via Email (placeholder)')">📧 Login with Email</button>
-      </div>
+-- Main loop
+game:GetService("RunService").RenderStepped:Connect(function()
+    -- Target finding logic here
+end)</pre>
+                    <button class="btn copy-btn">Copy Script</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Wallhack</h3>
+                <p>Lihat melalui dinding dan temukan posisi musuh dengan mudah.</p>
+                <div class="script-box">
+                    <pre>-- Wallhack Script
+local function applyWallhack(part)
+    part.Material = Enum.Material.ForceField
+    part.Transparency = 0.5
+    part.Color = Color3.fromRGB(255, 0, 0)
+end
+
+-- Apply to all existing parts
+for _, part in pairs(workspace:GetDescendants()) do
+    if part:IsA("BasePart") then
+        applyWallhack(part)
+    end
+end
+
+-- Apply to new parts
+workspace.DescendantAdded:Connect(function(part)
+    if part:IsA("BasePart") then
+        applyWallhack(part)
+    end
+end)</pre>
+                    <button class="btn copy-btn">Copy Script</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Speed Hack</h3>
+                <p>Tingkatkan kecepatan karakter Anda melebihi batas normal.</p>
+                <div class="script-box">
+                    <pre>-- Speed Hack Script
+local player = game:GetService("Players").LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Set speed (default is 16)
+humanoid.WalkSpeed = 50
+humanoid.JumpPower = 100
+
+-- Prevent speed reset
+character:WaitForChild("Humanoid").Running:Connect(function(speed)
+    if speed &lt; humanoid.WalkSpeed then
+        humanoid.WalkSpeed = 50
+    end
+end)</pre>
+                    <button class="btn copy-btn">Copy Script</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Auto Farm</h3>
+                <p>Otomatiskan proses farming untuk mendapatkan mata uang atau item.</p>
+                <div class="script-box">
+                    <pre>-- Auto Farm Script
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Target detection
+local function findNearestTarget()
+    -- Implementation here
+    return target
+end
+
+-- Main farming loop
+while true do
+    local target = findNearestTarget()
+    if target then
+        -- Attack logic here
+    end
+    wait(0.1)
+end</pre>
+                    <button class="btn copy-btn">Copy Script</button>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <button class="btn" style="padding: 15px 30px; font-size: 16px;">Inject All Scripts</button>
+        </div>
+        
+        <footer>
+            ROBLOX CHEAT DASHBOARD | v3.2 | © 2023 Not affiliated with Roblox Corporation
+        </footer>
     </div>
-
-    <!-- Script -->
-    <div id="script" class="section">
-      <div class="content-box">
-        <h2>🛰️ Script Station</h2>
-        <p>Paste your Roblox Lua script below for easy sharing:</p>
-        <pre>
-// example Roblox Lua script
-local player = game.Players.LocalPlayer
-print("Hello from Astro Hub, " .. player.Name)
--- paste your script here...
-        </pre>
-      </div>
-    </div>
-
-    <!-- Credit -->
-    <div id="credit" class="section">
-      <div class="content-box">
-        <h2>🚀 Credits</h2>
-        <p><strong>Created by:</strong> Alex — Developer, Designer, and Innovator 🚀</p>
-        <p>Astro Hub is made with love to support Roblox creators and scripters around the galaxy. 🌍</p>
-      </div>
-    </div>
-
-    <!-- Settings -->
-    <div id="settings" class="section">
-      <div class="content-box">
-        <h2>⚙️ System Settings</h2>
-        <p>Customize appearance, notifications, and advanced hub settings (coming soon).</p>
-      </div>
-    </div>
-
-    <footer>Astro Hub © 2025 • Explore the Codeverse</footer>
-  </div>
-
-  <script>
-    function showTab(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-    }
-  </script>
+    
+    <script>
+        // Simple copy functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const script = this.parentElement.querySelector('pre').textContent;
+                navigator.clipboard.writeText(script).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
