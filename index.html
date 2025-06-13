@@ -1,73 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Astro Hub</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Astro Hub</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: #ffffff;
-    }
-    header {
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-    }
-    header h1 {
-      font-size: 2rem;
-      letter-spacing: 2px;
-    }
-    nav {
-      display: flex;
-      background: rgba(10, 10, 30, 0.9);
-      border-bottom: 2px solid #0ff;
-    }
-    nav button {
-      flex: 1;
-      padding: 1rem;
-      border: none;
-      background: transparent;
-      color: #0ff;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    nav button:hover, nav button.active {
-      background: rgba(0, 255, 255, 0.2);
-    }
-    main {
-      padding: 2rem;
-    }
-    section {
-      display: none;
-    }
-    section.active {
-      display: block;
-    }
-    .content-box {
-      background: rgba(0, 0, 0, 0.75);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-      margin-top: 1rem;
-    }
-    h2 {
-      color: #0ff;
-      margin-bottom: 1rem;
-    }
-  </style>
+  /* RESET & BASE */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Orbitron', sans-serif;
+    background: url('https://images.unsplash.com/photo-1545249394-3ea5b42d1ccf?auto=format&fit=crop&w=1950&q=80') 
+                no-repeat center center fixed;
+    background-size: cover;
+    color: #eee;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* HEADER */
+  header {
+    background: rgba(0, 0, 20, 0.8);
+    color: #0ff;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,255,255,0.2);
+  }
+  header h1 { font-size: 1.8rem; }
+
+  /* NAVIGATION */
+  nav {
+    display: flex;
+    background: rgba(10,10,40,0.9);
+    border-bottom: 2px solid #0ff;
+  }
+  nav button {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    background: transparent;
+    color: #0ff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  nav button:hover,
+  nav button.active {
+    background: rgba(0,255,255,0.2);
+  }
+  
+  /* MAIN CONTENT & TABS */
+  main {
+    flex: 1;
+    padding: 1rem;
+  }
+  section {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  section.active {
+    display: block;
+  }
+  .content-box {
+    background: rgba(0,0,20,0.7);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,255,255,0.2);
+    margin-bottom: 1rem;
+  }
+  h2 {
+    color: #0ff;
+    margin-bottom: 0.75rem;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    color: #aaa;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.4rem; }
+    nav button { font-size: 0.9rem; padding: 0.75rem; }
+    .content-box { padding: 1rem; }
+  }
+
+  /* TAB ANIMATION */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
 </head>
 <body>
+
   <header>
-    <h1>🚀 Astro Hub Dashboard</h1>
+    <h1>🚀 Astro Hub</h1>
   </header>
 
   <nav>
@@ -75,45 +108,43 @@
     <button onclick="showTab('script')">Script</button>
     <button onclick="showTab('level')">Level</button>
     <button onclick="showTab('credit')">Credit</button>
-    <button onclick="showTab('setting')">Setting</button>
+    <button onclick="showTab('settings')">Settings</button>
   </nav>
 
   <main>
     <section id="dashboard" class="active">
       <div class="content-box">
         <h2>Mission Control</h2>
-        <p>Welcome to Astro Hub, Commander. System is ready for lift-off.</p>
+        <p>Overview of your cosmic realm – players online, mission status, and galaxy logs.</p>
       </div>
     </section>
-
     <section id="script">
       <div class="content-box">
-        <h2>Lua Scripts</h2>
-        <p>View and manage game automation scripts here.</p>
+        <h2>Script Station</h2>
+        <p>Upload, edit, or deploy Lua scripts for your Roblox universe.</p>
       </div>
     </section>
-
     <section id="level">
       <div class="content-box">
-        <h2>Level Module</h2>
-        <p>Player progression and XP monitoring.</p>
+        <h2>Level Lab</h2>
+        <p>Track player XP, ranks, and unlockable achievements.</p>
       </div>
     </section>
-
     <section id="credit">
       <div class="content-box">
-        <h2>Credit Control</h2>
-        <p>Track and modify in-game credits.</p>
+        <h2>Credit Core</h2>
+        <p>View and adjust in-game credits, currency, and economy settings.</p>
       </div>
     </section>
-
-    <section id="setting">
+    <section id="settings">
       <div class="content-box">
-        <h2>Mission Settings</h2>
-        <p>Adjust preferences for your hub.</p>
+        <h2>Command Settings</h2>
+        <p>Configure global settings, notifications, appearance, and hub options.</p>
       </div>
     </section>
   </main>
+
+  <footer>Astro Hub © 2025 • GitHub Pages</footer>
 
   <script>
     function showTab(id) {
